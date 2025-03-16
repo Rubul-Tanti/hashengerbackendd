@@ -42,7 +42,7 @@ router.post("/signup/otpverify",async(req,res)=>{
   })
   
 router.post("/signup/createprofile", upload.single("image"),async(req,res)=>{
- 
+ console.log(req)
   const {url} =await uploadToCloudinary(req)
   try{
   if(url){
@@ -50,9 +50,8 @@ router.post("/signup/createprofile", upload.single("image"),async(req,res)=>{
       if(username,bio){
         const newUser=await UserModel.create({username:username,bio:bio,imageUrl:url,gender:gender,log:log})
         if(newUser){
-       
-          res.status(200).json({success:true,message:"profile created",data:newUser})
           fs.unlinkSync(req.file.path)
+          res.status(200).json({success:true,message:"profile created",data:newUser})
         }else{res.status(500).json({success:false,message:"something went wrong"})}
       }
     }else{
