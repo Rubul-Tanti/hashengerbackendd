@@ -46,7 +46,6 @@ router.post("/signup/createprofile", upload.single("image"),async(req,res)=>{
   const {url} =await uploadToCloudinary(req)
   try{
   if(url){
-
     const {username,bio,gender}=req.body
       if(username,bio){
         const newUser=await UserModel.create({username:username,bio:bio,imageUrl:url,gender:gender,log:log})

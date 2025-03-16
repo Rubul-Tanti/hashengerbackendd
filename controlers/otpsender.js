@@ -2,6 +2,7 @@ const nodemailer=require("nodemailer")
 
 const otpSender=async(req,res,next)=>{
  try{ const usercontact=req.body
+  console.log(usercontact)
   const otp=Math.floor( (Math.random()*parseInt(process.env.OTPALGO))+parseInt(process.env.DIGITALGO) )
 
   if(usercontact.type==="sms"&&usercontact.id){
@@ -32,7 +33,7 @@ catch(e){console.error(e)}
       const auth=nodemailer.createTransport({
         service:"gmail",
         port:"465",
-        secure:true,
+        secure:false,
         auth:{
           user:"hashenger@gmail.com"
           , pass:"svtp tusp prny gbin"
@@ -45,11 +46,10 @@ catch(e){console.error(e)}
         text:`${otp} is your verification code.for security reasons do not share this code`
       }
       await auth.sendMail(reciver,(error,responce)=>{
+        console.log(responce)
         if(error){
           console.log(error)
-        }
-        
-      })
+        }})
       req.userInfo={log:usercontact.id,otp:otp} 
       next()
     }catch(e){console.error(e)}
