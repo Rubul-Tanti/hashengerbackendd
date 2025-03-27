@@ -11,7 +11,6 @@ const storage = multer.diskStorage({
     cb(null, `${uniqueSuffix + path.extname(file.originalname)}`); // Save with unique name
   },
 });
-
 // Multer Upload Middleware (Restrict to Images)
 const upload= multer({
   storage,

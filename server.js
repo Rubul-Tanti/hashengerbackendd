@@ -22,8 +22,7 @@ const io= new Server(server, { cors: {
   methods: ["GET", "POST"],
 }})
 io.on("connection",(socket)=>{
-
-
+console.log("connected")
   let id=socket.handshake.query.userid
   if(!onlineusers.includes(id)){
     allusers.push({userid:id,socketid:socket.id})
