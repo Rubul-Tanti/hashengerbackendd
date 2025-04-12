@@ -18,11 +18,12 @@ let allusers=[]
 let onlineusers=[]
 const server=http.createServer(app)
 const io= new Server(server, { cors: {
-  origin:process.env.FRONTENDURL, // Allow React frontend
+  origin:'https://rubul-tanti.github.io/hashenderFrontend', // Allow React frontend
   methods: ["GET", "POST"],
 }})
 io.on("connection",(socket)=>{
 console.log("connected")
+console.log(onlineusers)
   let id=socket.handshake.query.userid
   if(!onlineusers.includes(id)){
     allusers.push({userid:id,socketid:socket.id})
