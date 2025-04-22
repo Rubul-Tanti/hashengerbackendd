@@ -18,7 +18,7 @@ let allusers=[]
 let onlineusers=[]
 const server=http.createServer(app)
 const io= new Server(server, { cors: {
-  origin:'https://rubul-tanti.github.io/hashenderFrontend', // Allow React frontend
+  origin:'https://rubul-tanti.github.io', // Allow React frontend
   methods: ["GET", "POST"],
 }})
 io.on("connection",(socket)=>{
